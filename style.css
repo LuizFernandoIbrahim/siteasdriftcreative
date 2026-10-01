@@ -16,7 +16,7 @@
 
   --wrap: 1200px;
   --gut: clamp(20px, 5vw, 56px);
-  --drift: -3.2deg;
+  --drift: -3.2deg;         /* ângulo de derrapagem usado nos cortes */
 }
 
 *{ box-sizing: border-box; }
@@ -55,10 +55,8 @@ section{ position: relative; }
 .band{ padding: clamp(72px, 10vw, 132px) 0; }
 .band--alt{ background: var(--asphalt-2); }
 
-/* ---------- foco visível ---------- */
 :focus-visible{ outline: 2px solid var(--onca); outline-offset: 3px; border-radius: 2px; }
 
-/* ---------- botões ---------- */
 .btn{
   display:inline-flex; align-items:center; justify-content:center; gap:.55em;
   font-family: var(--display); font-weight:800; text-transform: uppercase;
@@ -75,7 +73,6 @@ section{ position: relative; }
 .btn--ghost:hover{ border-color: var(--onca); color: var(--onca); transform: translateY(-2px); }
 .btn--wide{ width:100%; }
 
-/* ==== NAV ==== */
 .nav{
   position: fixed; inset: 0 0 auto 0; z-index: 90;
   display:flex; align-items:center; gap: 28px;
@@ -150,8 +147,6 @@ section{ position: relative; }
   .nav .btn--solid{ display:none; }
   .burger{ display:block; }
 }
-
-/* ===== HERO ===== */
 .hero{
   min-height: 100svh;
   display:flex; align-items:center;
@@ -186,14 +181,15 @@ section{ position: relative; }
   content:""; width:14px; height:2px; background: var(--onca); transform: skewX(-30deg);
 }
 
-/* logo + rastro */
 .hero-figure{ position:relative; display:grid; place-items:center end; }
 .hero-figure img{
-  width: min(112%, 720px); 
-  margin-right: -32px;
-  -webkit-mask-image: radial-gradient(ellipse 56% 52% at 52% 47%, #000 56%, rgba(0,0,0,.35) 80%, transparent 100%);
-  mask-image: radial-gradient(ellipse 56% 52% at 52% 47%, #000 56%, rgba(0,0,0,.35) 80%, transparent 100%);
-  filter: drop-shadow(0 26px 60px rgba(0,0,0,.55));
+  width: min(104%, 600px);
+  margin-right: -28px;
+  filter:
+    drop-shadow(0 0 2px rgba(237,241,247,.95))
+    drop-shadow(0 0 2px rgba(237,241,247,.95))
+    drop-shadow(0 0 10px rgba(237,241,247,.35))
+    drop-shadow(0 26px 60px rgba(0,0,0,.55));
   will-change: transform;
 }
 .skid{ position:absolute; inset:-6% -10%; z-index:-1; opacity:.85; pointer-events:none; }
@@ -203,7 +199,6 @@ section{ position: relative; }
 }
 .skid .skid-2{ stroke: var(--chrome); opacity:.16; stroke-dasharray: 4 30; }
 
-/* linhas de velocidade */
 .speedlines{ position:absolute; inset:0; overflow:hidden; z-index:1; pointer-events:none; }
 .speedlines i{
   position:absolute; height:1px; left:-40%; width:44%;
@@ -238,7 +233,7 @@ section{ position: relative; }
   .hero-figure img{ width: min(78%, 380px); margin-right:0; }
   .scroll-cue{ display:none; }
 }
-/* ======================= FAIXA CORRIDA ======================= */
+
 .strip{
   border-block: 1px solid var(--line);
   background: linear-gradient(90deg, var(--asphalt-2), #0A2352 50%, var(--asphalt-2));
@@ -268,7 +263,6 @@ section{ position: relative; }
 }
 @keyframes slide{ to{ transform: translateX(-50%); } }
 
-/* =================== CABEÇALHOS DE SEÇÃO =================== */
 .head{ max-width: 62ch; margin-bottom: clamp(38px, 5vw, 64px); }
 .head h2{ margin-bottom: .35em; }
 .head h2 .accent{ color: var(--onca); }
@@ -278,7 +272,6 @@ section{ position: relative; }
   transform: skewX(-30deg); margin-bottom: 26px;
 }
 
-/* ========= SERVIÇOS ========= */
 .svc-grid{ display:grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
 .svc{
   position:relative; padding: 30px 28px 34px;
@@ -316,7 +309,6 @@ section{ position: relative; }
   .svc--lead{ grid-column: span 1; }
 }
 
-/* ======= PACOTES ======= */
 .plans{ display:grid; grid-template-columns: repeat(4, 1fr); gap: 16px; align-items: stretch; }
 .plan{
   display:flex; flex-direction:column;
@@ -368,7 +360,7 @@ section{ position: relative; }
 .plans-foot p{ margin:0; color:#C7D2E4; }
 @media (max-width: 1000px){ .plans{ grid-template-columns: 1fr 1fr; } }
 @media (max-width: 560px){ .plans{ grid-template-columns: 1fr; } }
-/* =============== POR QUE A DRIFT =============== */
+
 .why{
   background:
     radial-gradient(90% 120% at 12% 20%, rgba(23,67,166,.35), transparent 60%),
@@ -392,7 +384,6 @@ section{ position: relative; }
 .checks svg{ width:20px; height:20px; flex:none; margin-top:3px; stroke:var(--onca); stroke-width:2.2; fill:none; }
 @media (max-width: 860px){ .why-grid{ grid-template-columns:1fr; } }
 
-/* ====== SOBRE ====== */
 .duo{ display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-bottom: 22px; }
 .person{
   border:1px solid var(--line); border-radius:3px; padding: 32px 30px;
@@ -413,7 +404,6 @@ section{ position: relative; }
 .origin p{ margin:0; max-width: 78ch; color:#C7D2E4; }
 @media (max-width: 720px){ .duo{ grid-template-columns:1fr; } }
 
-/* ====== CASES ====== */
 .cases{ display:grid; grid-template-columns: repeat(3,1fr); gap:16px; }
 .case-slot{
   aspect-ratio: 4/3;
@@ -426,7 +416,6 @@ section{ position: relative; }
 .case-slot span{ font-size:.86rem; }
 @media (max-width: 760px){ .cases{ grid-template-columns:1fr; } .case-slot{ aspect-ratio: 16/7; } }
 
-/* ===== FAQ ===== */
 .faq{ max-width: 900px; }
 .q{ border-bottom: 1px solid var(--line); }
 .q:first-child{ border-top: 1px solid var(--line); }
@@ -451,7 +440,6 @@ section{ position: relative; }
 .q .a{ overflow:hidden; height:0; transition: height .34s cubic-bezier(.4,0,.2,1); }
 .q .a p{ padding: 0 60px 26px 4px; margin:0; color: var(--steel); }
 
-/* ======== CONTATO ======== */
 .contact{
   background:
     radial-gradient(80% 110% at 85% 10%, rgba(23,67,166,.42), transparent 62%),
@@ -504,13 +492,14 @@ form.is-sent .form-done{ display:block; }
 @media (max-width: 880px){ .contact-grid{ grid-template-columns:1fr; } }
 @media (max-width: 460px){ .two{ grid-template-columns:1fr; } }
 
-/* ======= RODAPÉ ======= */
 footer{ border-top:1px solid var(--line); padding: 54px 0 34px; }
 .foot-grid{ display:grid; grid-template-columns: 1.2fr 1fr 1fr; gap: 34px; align-items:start; }
 .foot-logo{ display:flex; align-items:center; gap:16px; margin-bottom:16px; }
 .foot-logo img{
-  width:74px; -webkit-mask-image: radial-gradient(circle at 52% 48%, #000 50%, transparent 72%);
-  mask-image: radial-gradient(circle at 52% 48%, #000 50%, transparent 72%);
+  width:118px;
+  filter:
+    drop-shadow(0 0 1.5px rgba(237,241,247,.9))
+    drop-shadow(0 0 1.5px rgba(237,241,247,.9));
 }
 footer h4{
   font-family:var(--display); font-weight:800; text-transform:uppercase; letter-spacing:.1em;
@@ -527,7 +516,6 @@ footer a:hover{ color: var(--onca); }
 @media (max-width: 780px){ .foot-grid{ grid-template-columns:1fr 1fr; } }
 @media (max-width: 460px){ .foot-grid{ grid-template-columns:1fr; } }
 
-/* ---------- sequência única de entrada do hero ---------- */
 .load{ opacity:0; animation: rise .9s cubic-bezier(.2,.7,.3,1) forwards; }
 .load[data-step="1"]{ animation-delay:.10s; }
 .load[data-step="2"]{ animation-delay:.26s; }
@@ -539,7 +527,6 @@ footer a:hover{ color: var(--onca); }
 .skid path{ stroke-dashoffset: 600; animation: trail 1.6s ease-out .5s forwards; }
 @keyframes trail{ to{ stroke-dashoffset: 0; } }
 
-/* =========================== REVEAL + MOVIMENTO REDUZIDO =========================== */
 .reveal{ opacity:0; transform: translateY(22px); }
 .is-in{ opacity:1; transform:none; transition: opacity .6s ease, transform .6s cubic-bezier(.2,.7,.3,1); }
 .is-in[data-delay="1"]{ transition-delay:.08s; }
